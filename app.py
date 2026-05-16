@@ -25,7 +25,7 @@ menu = {
 }
 
 coupons = {
-    "ADHNAN20": 0.20,
+    "JAGATH20": 0.20,
     "SAVE10": 0.10
 }
 
