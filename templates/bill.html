@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Final Bill</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="bill-container">
+
+    <div class="nav">
+        <button type="button" onclick="toggleDarkMode()" class="mode-btn">
+            Dark Mode
+        </button>
+    </div>
+
+    <div class="hero">
+        <h1>🍽️ Foodies Hub</h1>
+        <h2>Final Bill</h2>
+    </div>
+
+    <p><b>Bill No:</b> {{ bill_no }}</p>
+    <p><b>Customer Name:</b> {{ customer_name }}</p>
+    <p><b>Mobile Number:</b> {{ customer_phone }}</p>
+    <p><b>Table Number:</b> {{ table_no }}</p>
+    <p><b>Order Type:</b> {{ order_type }}</p>
+    <p><b>Date & Time:</b> {{ current_time }}</p>
+
+    <hr>
+
+    <h3>Items Ordered</h3>
+
+    <table>
+
+        <tr>
+            <th>Item</th>
+            <th>Qty</th>
+            <th>Price</th>
+        </tr>
+
+        {% for item, qty, price in ordered_items %}
+        <tr>
+            <td>{{ item }}</td>
+            <td>{{ qty }}</td>
+            <td>Rs.{{ price }}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+    <hr>
+
+    <p><b>Total Items:</b> {{ total_items }}</p>
+    <p><b>Subtotal:</b> Rs.{{ "%.2f"|format(total_bill) }}</p>
+    <p><b>Discount:</b> Rs.{{ "%.2f"|format(discount) }}</p>
+    <p><b>GST 5%:</b> Rs.{{ "%.2f"|format(gst) }}</p>
+
+    <h2>Grand Total: Rs.{{ "%.2f"|format(grand_total) }}</h2>
+
+    <p><b>Payment Method:</b> {{ payment_method }}</p>
+
+    <p class="success">
+        Bill saved as {{ filename }}
+    </p>
+
+    <div class="button-group">
+
+        <button onclick="window.print()">
+            🖨️ Print Bill
+        </button>
+
+        <button onclick="downloadPDF()">
+            📄 Download PDF
+        </button>
+
+        <a href="/home" class="new-bill-btn">
+            ➕ Generate New Bill
+        </a>
+
+    </div>
+
+</div>
+
+<script>
+
+function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
+}
+
+function downloadPDF() {
+
+    window.print();
+}
+
+</script>
+<button class="dark-toggle" onclick="toggleDarkMode()">
+    🌙 Dark Mode
+</button>
+
+<script>
+
+if(localStorage.getItem("darkMode") === "enabled") {
+    document.body.classList.add("dark-mode");
+}
+
+function toggleDarkMode() {
+
+    document.body.classList.toggle("dark-mode");
+
+    if(document.body.classList.contains("dark-mode")) {
+
+        localStorage.setItem("darkMode", "enabled");
+
+    } else {
+
+        localStorage.setItem("darkMode", "disabled");
+    }
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Foodies Hub | Billing System</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="nav">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/orders">Order History</a>
+        <a href="/transactions">Transactions</a>
+        <button type="button" onclick="toggleDarkMode()" class="mode-btn">Dark Mode</button>
+        <a href="/logout">Logout</a>
+    </div>
+
+    <div class="hero">
+        <h1>🍽️ Foodies Hub</h1>
+        <p>Smart Restaurant Billing & Management System</p>
+    </div>
+
+    <form action="/generate_bill" method="POST">
+
+        <div class="section-card">
+            <h3>👤 Customer Details</h3>
+
+            <div class="grid">
+                <input type="text" name="customer_name" placeholder="Customer Name" required>
+                <input type="text" name="customer_phone" placeholder="Mobile Number" required>
+                <input type="text" name="table_no" placeholder="Table Number" required>
+
+                <select name="order_type">
+                    <option>Dine In</option>
+                    <option>Take Away</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <h3>📋 Restaurant Menu</h3>
+
+            <div class="menu">
+                {% for item, price in menu.items() %}
+                <div class="menu-item">
+                    <div>
+                        <strong>{{ item }}</strong>
+                        <span>Rs.{{ price }}</span>
+                    </div>
+                    <input type="number" name="{{ item }}" value="0" min="0">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="section-card">
+            <h3>🎟️ Coupon & Payment</h3>
+
+            <div class="grid">
+                <input type="text" name="coupon" placeholder="Coupon Code: JAGATH20 / SAVE10">
+
+                <select name="payment_method">
+                    <option>Cash</option>
+                    <option>UPI</option>
+                    <option>Card</option>
+                </select>
+            </div>
+        </div>
+
+        <button type="submit">Generate Final Bill</button>
+
+    </form>
+</div>
+
+<script>
+function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
+}
+</script>
+<button class="dark-toggle" onclick="toggleDarkMode()">
+    🌙 Dark Mode
+</button>
+
+<script>
+
+if(localStorage.getItem("darkMode") === "enabled") {
+    document.body.classList.add("dark-mode");
+}
+
+function toggleDarkMode() {
+
+    document.body.classList.toggle("dark-mode");
+
+    if(document.body.classList.contains("dark-mode")) {
+
+        localStorage.setItem("darkMode", "enabled");
+
+    } else {
+
+        localStorage.setItem("darkMode", "disabled");
+    }
+}
+
+</script>
+</body>
+</html>
