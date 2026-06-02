@@ -26,6 +26,7 @@
         <div class="section-card">
             <h3>👤 Customer Details</h3>
 
+<<<<<<< HEAD
            <div class="grid">
     <input 
         type="text" 
@@ -63,6 +64,18 @@
         <option>Take Away</option>
     </select>
 </div>
+=======
+            <div class="grid">
+                <input type="text" name="customer_name" placeholder="Customer Name" required>
+                <input type="text" name="customer_phone" placeholder="Mobile Number" required>
+                <input type="text" name="table_no" placeholder="Table Number" required>
+
+                <select name="order_type">
+                    <option>Dine In</option>
+                    <option>Take Away</option>
+                </select>
+            </div>
+>>>>>>> d27233f47674c24c36166e7ec2210fa112ff7b30
         </div>
 
         <div class="section-card">
@@ -75,6 +88,7 @@
                         <strong>{{ item }}</strong>
                         <span>Rs.{{ price }}</span>
                     </div>
+<<<<<<< HEAD
                     <input 
     type="number"
     name="{{ item }}"
@@ -83,6 +97,9 @@
     onfocus="if(this.value=='0') this.value=''"
     onblur="if(this.value=='') this.value='0'"
 >
+=======
+                    <input type="number" name="{{ item }}" value="0" min="0">
+>>>>>>> d27233f47674c24c36166e7ec2210fa112ff7b30
                 </div>
                 {% endfor %}
             </div>
@@ -137,6 +154,7 @@ function toggleDarkMode() {
 }
 
 </script>
+<<<<<<< HEAD
 <script>
 function clearZero(input) {
     if (input.value === "0") {
@@ -150,5 +168,7 @@ function restoreZero(input) {
     }
 }
 </script>
+=======
+>>>>>>> d27233f47674c24c36166e7ec2210fa112ff7b30
 </body>
 </html>

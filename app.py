@@ -5,8 +5,13 @@ import random
 app = Flask(__name__)
 app.secret_key = "restaurant_secret_key"
 
+<<<<<<< HEAD
 ADMIN_USERNAME = "Admin"
 ADMIN_PASSWORD = "123"
+=======
+ADMIN_USERNAME = "Jagath soorya"
+ADMIN_PASSWORD = "Jagath123"
+>>>>>>> d27233f47674c24c36166e7ec2210fa112ff7b30
 
 menu = {
     "Pizza": 120,
@@ -38,8 +43,13 @@ def login():
     error = ""
 
     if request.method == "POST":
+<<<<<<< HEAD
         username = request.form.get("username", "")
         password = request.form.get("password", "")
+=======
+        username = request.form["username"]
+        password = request.form["password"]
+>>>>>>> d27233f47674c24c36166e7ec2210fa112ff7b30
 
         if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:
             session["admin"] = True
@@ -63,6 +73,7 @@ def generate_bill():
     if "admin" not in session:
         return redirect(url_for("login"))
 
+<<<<<<< HEAD
     customer_name = request.form.get("customer_name", "").strip()
     customer_phone = request.form.get("customer_phone", "").strip()
     table_no = request.form.get("table_no", "").strip()
@@ -79,11 +90,20 @@ def generate_bill():
 
     if not table_no.isdigit():
         return "Error: Table number should contain only numbers."
+=======
+    customer_name = request.form["customer_name"]
+    customer_phone = request.form["customer_phone"]
+    table_no = request.form["table_no"]
+    order_type = request.form["order_type"]
+    payment_method = request.form["payment_method"]
+    coupon = request.form["coupon"].upper()
+>>>>>>> d27233f47674c24c36166e7ec2210fa112ff7b30
 
     ordered_items = []
     total_bill = 0
     total_items = 0
 
+<<<<<<< HEAD
     # Corrected menu loop
     for item, price in menu.items():
         qty_value = request.form.get(item, "0")
@@ -92,6 +112,10 @@ def generate_bill():
             qty = 0
         else:
             qty = int(qty_value)
+=======
+    for item, price in menu.items():
+        qty = int(request.form.get(item, 0))
+>>>>>>> d27233f47674c24c36166e7ec2210fa112ff7b30
 
         if qty > 0:
             item_total = price * qty

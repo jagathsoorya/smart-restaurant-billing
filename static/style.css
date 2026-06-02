@@ -627,6 +627,7 @@ tr:nth-child(even) {
 .dark-toggle:hover {
 
     background: #374151;
+<<<<<<< HEAD
 }
 .input-label {
     display: block;
@@ -755,4 +756,6 @@ tr:nth-child(even) {
         height: 54px;
         font-size: 15px;
     }
+=======
+>>>>>>> d27233f47674c24c36166e7ec2210fa112ff7b30
 }
