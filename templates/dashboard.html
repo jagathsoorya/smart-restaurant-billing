@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="nav">
+        <a href="/home">Billing</a>
+        <a href="/orders">Order History</a>
+        <a href="/transactions">Transactions</a>
+        <button type="button" onclick="toggleDarkMode()" class="mode-btn">Dark Mode</button>
+        <a href="/logout">Logout</a>
+    </div>
+
+    <div class="hero">
+        <h1>📊 Dashboard</h1>
+        <p>Restaurant Business Overview</p>
+        <h3 id="clock"></h3>
+    </div>
+
+    <div class="dashboard-grid">
+
+        <div class="dashboard-card">
+            <h2>{{ total_orders }}</h2>
+            <p>Total Orders</p>
+        </div>
+
+        <div class="dashboard-card">
+            <h2>Rs.{{ "%.2f"|format(total_revenue) }}</h2>
+            <p>Total Revenue</p>
+        </div>
+
+        <div class="dashboard-card">
+            <h2>{{ total_transactions }}</h2>
+            <p>Total Transactions</p>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+function updateClock() {
+    let now = new Date();
+    document.getElementById("clock").innerHTML = now.toLocaleString();
+}
+
+setInterval(updateClock, 1000);
+updateClock();
+
+function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
+}
+</script>
+<button class="dark-toggle" onclick="toggleDarkMode()">
+    🌙 Dark Mode
+</button>
+
+<script>
+
+if(localStorage.getItem("darkMode") === "enabled") {
+    document.body.classList.add("dark-mode");
+}
+
+function toggleDarkMode() {
+
+    document.body.classList.toggle("dark-mode");
+
+    if(document.body.classList.contains("dark-mode")) {
+
+        localStorage.setItem("darkMode", "enabled");
+
+    } else {
+
+        localStorage.setItem("darkMode", "disabled");
+    }
+}
+
+</script>
+</body>
+</html>

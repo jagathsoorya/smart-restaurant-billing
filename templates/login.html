@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="login-box">
+    <h1>🍽️ Foodies Hub</h1>
+    <h2>Admin Login</h2>
+
+   <form method="POST" autocomplete="off" class="login-form">
+
+    <div class="form-group">
+        <label>Username</label>
+        <div class="professional-input">
+            <span class="input-icon">👤</span>
+            <input 
+                type="text"
+                name="username"
+                id="username"
+                placeholder="Enter your username"
+                autocomplete="off"
+                value=""
+                required
+            >
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Password</label>
+        <div class="professional-input">
+            <span class="input-icon">🔒</span>
+            <input 
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Enter your password"
+                autocomplete="new-password"
+                value=""
+                required
+            >
+            <span class="eye-icon" onclick="togglePassword()">👁️</span>
+        </div>
+    </div>
+
+    <button type="submit">Login</button>
+</form>
+
+<script>
+function togglePassword() {
+    const password = document.getElementById("password");
+
+    if (password.type === "password") {
+        password.type = "text";
+    } else {
+        password.type = "password";
+    }
+}
+
+window.onload = function () {
+    setTimeout(function () {
+        document.getElementById("username").value = "";
+        document.getElementById("password").value = "";
+    }, 300);
+};
+</script>
+<script>
+function togglePassword() {
+    const password = document.getElementById("password");
+
+    if (password.type === "password") {
+        password.type = "text";
+    } else {
+        password.type = "password";
+    }
+}
+
+// Clear browser autofill after page loads
+window.onload = function () {
+    setTimeout(function () {
+        document.getElementById("username").value = "";
+        document.getElementById("password").value = "";
+    }, 300);
+};
+</script>
+
+    <p class="error">{{ error }}</p>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Transaction History</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="nav">
+        <a href="/home">Billing</a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/orders">Orders</a>
+        <button type="button" onclick="toggleDarkMode()" class="mode-btn">Dark Mode</button>
+        <a href="/logout">Logout</a>
+    </div>
+
+    <div class="hero">
+        <h1>💳 Transaction History</h1>
+        <p>Restaurant Payment Records</p>
+    </div>
+
+    <input type="text"
+           id="transactionSearch"
+           placeholder="🔍 Search transactions..."
+           onkeyup="searchTransactions()">
+
+    <table>
+        <tr>
+            <th>Bill No</th>
+            <th>Payment Method</th>
+            <th>Total Amount</th>
+            <th>Date & Time</th>
+        </tr>
+
+        {% for transaction in transactions %}
+        <tr>
+            <td>{{ transaction.bill_no }}</td>
+            <td>{{ transaction.payment_method }}</td>
+            <td>Rs.{{ "%.2f"|format(transaction.amount) }}</td>
+            <td>{{ transaction.date_time }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</div>
+
+<script>
+function searchTransactions() {
+    let input = document.getElementById("transactionSearch").value.toLowerCase();
+    let rows = document.querySelectorAll("table tr");
+
+    for (let i = 1; i < rows.length; i++) {
+        let text = rows[i].innerText.toLowerCase();
+
+        if (text.includes(input)) {
+            rows[i].style.display = "";
+        } else {
+            rows[i].style.display = "none";
+        }
+    }
+}
+
+function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
+}
+</script>
+<button class="dark-toggle" onclick="toggleDarkMode()">
+    🌙 Dark Mode
+</button>
+
+<script>
+
+if(localStorage.getItem("darkMode") === "enabled") {
+    document.body.classList.add("dark-mode");
+}
+
+function toggleDarkMode() {
+
+    document.body.classList.toggle("dark-mode");
+
+    if(document.body.classList.contains("dark-mode")) {
+
+        localStorage.setItem("darkMode", "enabled");
+
+    } else {
+
+        localStorage.setItem("darkMode", "disabled");
+    }
+}
+
+</script>
+</body>
+</html>
